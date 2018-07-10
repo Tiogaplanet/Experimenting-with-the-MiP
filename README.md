@@ -1,3 +1,4 @@
+
 # Experimenting with the MiP
 This is a place to organize all my thoughts and experimation on [WowWee's MiP](https://www.wowwee.com/mip/) robot.  Most of what is collected here relates to interfacing with  MiP using various microcontrollers connected via the internal hardware universal asynchronous receiver transmitter (UART) port.
 
@@ -6,6 +7,7 @@ Thanks go out to [adamgreen](https://github.com/adamgreen) for breathing new lif
 
 ## Links
 Here in no particular order are the sites I recommend reviewing to before diving into hacking your MiP.
+* WowWee's Bluetooth Low Energy (BLE) [command list](https://github.com/WowWeeLabs/MiP-BLE-Protocol/blob/master/MiP-Protocol.md) for  MiP.  Works over UART too.
 * [ESP8266 Over The Air (OTA) Updates with Arduino IDE](https://randomnerdtutorials.com/esp8266-ota-updates-with-arduino-ide-over-the-air/)
 * [How to upgrade your ESP8266 memory to 4MB (in under 2 minutes)](https://www.youtube.com/watch?v=7Q6ABad7U6o)
 * A [prototyping shield](https://github.com/Tiogaplanet/MiP_ProtoPack) for adamgreen's ProMini-Pack
@@ -19,6 +21,7 @@ ProMini-like Arduinos including the ProMini-Pack
 * Several analog and digital input/output (IO) lines.
 * Easy to build custom-shaped boards to fit outside the MiP case.
 * Flexible options for power conservation.
+* Lots of available documentation.
 
 Cons:
 * No internet connectivity.
