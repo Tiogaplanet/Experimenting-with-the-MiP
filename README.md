@@ -44,6 +44,7 @@ While this project started with an Arduino ProMini-compatible board, other micro
 * Good balance between size and connectivity.
 
 #### Cons
+* Gives up the convenient break-outs of the NodeMCU for smaller packaging.
 * Small packaging requires some skill to solder unless a break-out board is used.
 
 ### NodeMCU
