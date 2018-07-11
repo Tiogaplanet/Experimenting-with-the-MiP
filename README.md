@@ -1,4 +1,3 @@
-
 # Experimenting with the MiP
 This is a place to organize all my thoughts and experimation on [WowWee's MiP](https://www.wowwee.com/mip/) robot.  Most of what is collected here relates to interfacing with  MiP using various microcontrollers connected via the internal hardware universal asynchronous receiver transmitter (UART) port.
 
@@ -7,6 +6,7 @@ Thanks go out to [adamgreen](https://github.com/adamgreen) for breathing new lif
 
 ## Links
 Here in no particular order are the sites I recommend reviewing to before diving into hacking your MiP.
+* [Hacking the MiP](https://learn.sparkfun.com/tutorials/hacking-the-mip---promini-pack?_ga=2.116106246.1689750351.1531221450-408871298.1525958450) - SparkFun's guide to adding a ProMini Pack to MiP. Applies to adamgreen's successor pack too.
 * WowWee's Bluetooth Low Energy (BLE) [command list](https://github.com/WowWeeLabs/MiP-BLE-Protocol/blob/master/MiP-Protocol.md) for  MiP.  Works over UART too.
 * [ESP8266 Over The Air (OTA) Updates with Arduino IDE](https://randomnerdtutorials.com/esp8266-ota-updates-with-arduino-ide-over-the-air/)
 * [How to upgrade your ESP8266 memory to 4MB (in under 2 minutes)](https://www.youtube.com/watch?v=7Q6ABad7U6o)
@@ -15,42 +15,49 @@ Here in no particular order are the sites I recommend reviewing to before diving
 ## Microcontrollers
 While this project started with an Arduino ProMini-compatible board, other microcontrollers (and single board computers) are able to tap MiP's UART connector.  The pros on cons of some of the most likely candidates are recorded here.
 
-ProMini-like Arduinos including the ProMini-Pack
+### ProMini-like Arduinos including the ProMini-Pack
 
-* Pros:
+#### Pros
 * Several analog and digital input/output (IO) lines.
 * Easy to build custom-shaped boards to fit outside the MiP case.
 * Flexible options for power conservation.
 * Lots of available documentation.
 
-Cons:
+#### Cons
 * No internet connectivity.
 
-ESP-01
+### ESP-01
 
-Pros:
+#### Pros
 * Very small form factor.
 * Internet connectivity.
 
-Cons:
+#### Cons
 * Limited number of IO lines (four if you re-purpose the serial port).
 * Limited ability to conserve power.
 
-ESP-12
+### ESP-12
 
-Pros
+#### Pros
 * Small form factor.
 * Internet connectivity.
-* Good balance between size and connectivity
+* Good balance between size and connectivity.
 
-Cons
+#### Cons
 * Small packaging requires some skill to solder unless a break-out board is used.
 
-NodeMCU
+### NodeMCU
 
-* Pros:
+#### Pros
 * Plenty of IO lines.
 * Internet connectivity.
 
-Cons:
+#### Cons
 * Too big to store inside MiP.
+
+## MiP can email
+Using the ESP-01 MiP is able to send email.  For this experiment I leveraged Borya's instructable titled [ESP8266 GMail Sender](http://www.instructables.com/id/ESP8266-GMail-Sender/).  I copied the parts I needed from ESP8266_Gmail_Sender.ino and copied them into a local copy of [ReadWriteEeprom.ino](https://github.com/adamgreen/MiP_ProMini-Pack/blob/master/Arduino/MiP_ProMini_Pack_Library/examples/ReadWriteEeprom/ReadWriteEeprom.ino).  With a small edit to add an if statement to mip.getUserData(eepromAddressOffset), I was able to send emails directly from MiP.
+
+![alt text](https://github.com/Tiogaplanet/Experimenting-with-the-MiP/raw/master/images/IMG-1808.JPG "MiP sending email.")
+
+The tricky part is in moving the ESP-01 inside MiP's case.  It could be mounted externally if the case is modified as shown in SparkFun's MiP guide, however there is plenty of room in MiP's empty head to fit the ESP-01.  The next challenge would be replacing the ESP-01's 1MB flash memory with a 4MB chip to enable OTA programming.  Once that is accomplished, MiP's 6V line from UART needs to be regulated to 3.3V to power the ESP-01.
