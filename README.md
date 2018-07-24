@@ -1,5 +1,5 @@
 # Experimenting with the MiP
-This is a place to organize all my thoughts and experimation on [WowWee's MiP](https://www.wowwee.com/mip/) robot.  Most of what is collected here relates to interfacing with  MiP using various microcontrollers connected via the internal hardware universal asynchronous receiver transmitter (UART) port.
+This is a place to organize all my thoughts and experimation on [WowWee's MiP](https://www.wowwee.com/mip/) robot.  Most of what is collected here relates to interfacing with  MiP using various microcontrollers connected via the internal hardware universal asynchronous receiver transmitter (UART) port.  This readme contains information I've gathered while working on MiP.  My experiments can be found in the [wiki](https://github.com/Tiogaplanet/Experimenting-with-the-MiP/wiki).
 
 ## Acknowledgement
 Thanks go out to [adamgreen](https://github.com/adamgreen) for breathing new life into this project.  Without his help in correcting a design flaw in the original [ProMini-Pack](https://github.com/sparkfun/MiP_ProMini-Pack) I'd probably still be wondering why I can't get an Arduino to talk to the MiP.  He revised the ProMini-Pack to use the 5V, 16MHz version of the ATmega328P and subsequently ported his [MiP C API](https://github.com/adamgreen/MiP-Capi) to the ProMini making it incredibly easy to write Arduino sketches to control MiP. His revised and working board along with its supporting library are available for [download](https://github.com/adamgreen/MiP_ProMini-Pack). You can read [the issue](https://github.com/WowWeeLabs/MiP-BLE-Protocol/issues/18) that broke through my stagnant effort to connect an Arduino to MiP which, while posted to one of WowWee's repositories, was ultimately found to be a problem on the original ProMini-Pack.
@@ -55,10 +55,3 @@ While this project started with an Arduino ProMini-compatible board, other micro
 
 #### Cons
 * Too big to store inside MiP.
-
-## MiP can email
-Using the ESP-01 MiP is able to send email.  For this experiment I leveraged Borya's instructable titled [ESP8266 GMail Sender](http://www.instructables.com/id/ESP8266-GMail-Sender/).  I copied the parts I needed from ESP8266_Gmail_Sender.ino and copied them into a local copy of [ReadWriteEeprom.ino](https://github.com/adamgreen/MiP_ProMini-Pack/blob/master/Arduino/MiP_ProMini_Pack_Library/examples/ReadWriteEeprom/ReadWriteEeprom.ino).  With a small edit to add an if statement to mip.getUserData(eepromAddressOffset), I was able to send emails directly from MiP.
-
-![alt text](https://github.com/Tiogaplanet/Experimenting-with-the-MiP/raw/master/images/IMG-1808.JPG "MiP sending email.")
-
-The tricky part is in moving the ESP-01 inside MiP's case.  It could be mounted externally if the case is modified as shown in SparkFun's MiP guide, however there is plenty of room in MiP's empty head to fit the ESP-01.  The next challenge would be replacing the ESP-01's 1MB flash memory with a 4MB chip to enable OTA programming.  Once that is accomplished, MiP's 6V line from UART needs to be regulated to 3.3V to power the ESP-01.
