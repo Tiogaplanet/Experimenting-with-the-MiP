@@ -10,10 +10,11 @@ Here in no particular order are the sites I recommend reviewing to before diving
 * WowWee's Bluetooth Low Energy (BLE) [command list](https://github.com/WowWeeLabs/MiP-BLE-Protocol/blob/master/MiP-Protocol.md) for  MiP.  Works over UART too.
 * [ESP8266 Over The Air (OTA) Updates with Arduino IDE](https://randomnerdtutorials.com/esp8266-ota-updates-with-arduino-ide-over-the-air/)
 * [How to upgrade your ESP8266 memory to 4MB (in under 2 minutes)](https://www.youtube.com/watch?v=7Q6ABad7U6o)
-* A [prototyping shield](https://github.com/Tiogaplanet/MiP_ProtoPack) for adamgreen's ProMini-Pack
+* A [prototyping shield](https://github.com/Tiogaplanet/MiP_ProtoPack) for adamgreen's ProMini-Pack.
+* An [adapter board](https://github.com/Tiogaplanet/MiP_D1-mini-Pack) to connect a D1 mini to MiP.
 
-## Microcontrollers
-While this project started with an Arduino ProMini-compatible board, other microcontrollers (and single board computers) are able to tap MiP's UART connector.  The pros on cons of some of the most likely candidates are recorded here.
+## Control boards
+While this project started with an Arduino ProMini-compatible board, other microcontrollers or single board computers are able to tap MiP's UART connector.  The pros on cons of some of the most likely candidates are recorded here.
 
 ### ProMini-like Arduinos including the ProMini-Pack
 
@@ -25,8 +26,9 @@ While this project started with an Arduino ProMini-compatible board, other micro
 
 #### Cons
 * No internet connectivity.
+* Bulky.
 
-### ESP-01
+### ESP-01 (ESP8266-based)
 
 #### Pros
 * Very small form factor.
@@ -35,8 +37,9 @@ While this project started with an Arduino ProMini-compatible board, other micro
 #### Cons
 * Limited number of IO lines (four if you re-purpose the serial port).
 * Limited ability to conserve power.
+* Not easily programmed.
 
-### ESP-12
+### ESP-12 (ESP8266-based)
 
 #### Pros
 * Small form factor.
@@ -46,12 +49,28 @@ While this project started with an Arduino ProMini-compatible board, other micro
 #### Cons
 * Gives up the convenient break-outs of the NodeMCU for smaller packaging.
 * Small packaging requires some skill to solder unless a break-out board is used.
+Not easily programmed.
 
-### NodeMCU
+### NodeMCU (ESP8266-based)
 
 #### Pros
 * Plenty of IO lines.
 * Internet connectivity.
+* Can be programmed over the air (OTA).
 
 #### Cons
 * Too big to store inside MiP.
+
+### Wemos D1 mini and compatible boards (ESP8266-based)
+
+### Pros
+* Internet connectivity.
+* Adequate number of IO lines to include a single analog line.
+* Small size allows it to be mounted in MiP's head.
+* Easy to program.
+* USB connector permits external power when D1 mini is mounted externally.
+* Can be programmed OTA.
+
+### Cons
+* Primary RX/TX pair is electrically shared with USB input which interferes with programming when MiP is attached.
+* Secondary UART is TX only.
